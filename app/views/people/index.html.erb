@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 15px;
+}
+table th{
+  background-color: lightgrey;
+}
+table{
+  width:70%;
+  
+}
+</style>
+</head>
+<body>
+
+<table style="width:100%">
+<h1>People Database</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Weight</th>
+      <th>Height</th>
+      <th>Color</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.name %></td>
+        <td><%= person.weight %></td>
+        <td><%= person.height %></td>
+        <td><%= person.color %></td>
+        <td><%= link_to 'Show', person %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Person', new_person_path %>
+<%= link_to 'Display all people', new_person_path %>
