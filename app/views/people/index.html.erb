@@ -7,12 +7,30 @@ table, th, td {
 th, td {
     padding: 15px;
 }
-table th{
-  background-color: lightgrey;
+th {
+    background-color: #4CAF50;
+    color: white;
 }
+
 table{
   width:70%;
   
+}
+.button{
+  border-color:white;
+  border-radius:10px;
+  background-color:#0099ff;
+  color:white;
+  height:30px;
+  width:90px;
+  margin-left:20px;
+}
+table tr:nth-child(even){
+    background: lightgrey;
+}
+
+table tr:nth-child(odd){
+    background: white;
 }
 </style>
 </head>
@@ -48,6 +66,16 @@ table{
 </table>
 
 <br>
-
-<%= link_to 'New Person', new_person_path %>
-<%= link_to 'Display all people', new_person_path %>
+<%= button_to "New Person", new_person_path,:class => "button", :method => :get %>
+<br>
+<button style="border-color:white;border-radius:10px;background-color:#0099ff;color:white;height:30px;width:90px;margin-left:20px"type="button" onclick="document.getElementById('showup').style.visibility= 'visible'">Display all</button>
+<button style="border-color:white;border-radius:10px;background-color:#0099ff;color:white;height:30px;width:90px;margin-left:40px" type="button" onclick="document.getElementById('showup').style.visibility= 'hidden'">Hidden all</button>
+<div id = "showup" style = "visibility: hidden;margin-left: 200px;">
+  <% @people.each do |person| %>
+    <svg style = "margin-top: 50px;" width="<%= person.weight+30 %>" height="<%= person.height %>">
+      <rect  width="<%= person.weight %>" height="<%= person.height %>" style="margin-top: 50px;fill:<%= person.color %>;stroke-width:0;stroke:rgb(0,0,0)" />
+         <text x="25" y="20" style="fill:white;"><%= person.name %>
+        </text>
+  </svg>
+  <% end %>
+</div>
